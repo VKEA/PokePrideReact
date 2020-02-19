@@ -1,24 +1,24 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+
+import PokePrideCanvas from './PokePrideCanvas';
+import PokemonSelector from './PokemonSelector';
+import FlagSelector from './FlagSelector';
+import SizeSlider from './SizeSlider';
+import RandomButton from './RandomButton';
+import Instructions from './Instructions';
+import Copyright from './Copyright';
+
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <PokePrideCanvas />
+      <PokemonSelector />
+      <FlagSelector />
+      <SizeSlider />
+      <RandomButton />
+      <Instructions />
+      <Copyright />
     </div>
   );
 }
