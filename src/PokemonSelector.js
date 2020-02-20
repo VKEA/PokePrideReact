@@ -4,6 +4,8 @@ class PokemonSelector extends React.Component {
     constructor(props) {
         super(props);
         this.handleChange = this.handleChange.bind(this);
+        this.getPokemon = this.getPokemon.bind(this);
+        this.getPokemonForm = this.getPokemonForm.bind(this);
 
         this.state = {
             items: [],
@@ -50,22 +52,64 @@ class PokemonSelector extends React.Component {
 
             this.setState({
                 items: pokemonArray,
-                value: pokemonArray[0][1]
+                url: pokemonArray[0][1]
             });
 
-            console.log(this.state.items);
+            this.getPokemon();
 
             },
             (error) => {
                 console.log("oof! Something went wrong.");
             }
-        )
+        );
+    }
+
+    getPokemon() {
+        fetch(this.state.url)
+        .then(res => res.json())
+        .then(
+            (response) => {
+                this.getPokemonForm(response.pokemon.url);
+            },
+            (error) => {
+                console.log("oof! Something went wrong. getPokemon");
+            }
+        );
+    }
+
+    getPokemonForm(url) {
+        fetch(url)
+        .then(res => res.json())
+        .then(
+            (response) => {
+                console.log(response);
+
+                let dexNumber = response.species.url.slice(42,-1);
+                for (;dexNumber.length < 3;) {
+                    dexNumber = "0"+dexNumber;
+                }
+                this.setState({
+                    pokemon: {
+                        name: response.name,
+                        species: dexNumber
+                    }
+                });
+                this.props.onSelectPokemon(this.state.pokemon)
+            },
+            (error) => {
+                console.log("oof! Something went wrong. getPokemonForm");
+            }
+        );
     }
 
     handleChange(event) {
         this.setState({
-            value: event.target.value
-        });
+            url: event.target.value
+        },
+            () => {
+                this.getPokemon();
+            }
+        );
     }
 
     render() {

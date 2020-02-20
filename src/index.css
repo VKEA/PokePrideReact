@@ -45,6 +45,6 @@ button {
   max-width: 80px;
 }
 
-#imageURL {
+.pokemonimage {
   display: none;
 }
