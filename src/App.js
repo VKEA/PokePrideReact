@@ -3,8 +3,6 @@ import React from 'react';
 import PokePrideCanvas from './PokePrideCanvas';
 import PokemonSelector from './PokemonSelector';
 import FlagSelector from './FlagSelector';
-import SizeSlider from './SizeSlider';
-import RandomButton from './RandomButton';
 import Instructions from './Instructions';
 import Copyright from './Copyright';
 
@@ -13,7 +11,7 @@ class App extends React.Component {
     constructor(props) {
         super(props);
         this.handlePokemon = this.handlePokemon.bind(this);
-        this.handleSize = this.handleSize.bind(this);
+        this.handleFlag = this.handleFlag.bind(this);
         this.getPokemonImage = this.getPokemonImage.bind(this);
 
         this.state = {
@@ -22,8 +20,7 @@ class App extends React.Component {
                 species: null
             },
             pokemonImage: null,
-            flag: null,
-            size: null
+            flagImage: null
         };
     }
 
@@ -36,9 +33,9 @@ class App extends React.Component {
         );
     }
 
-    handleSize (sizeValue) {
+    handleFlag (flagValue) {
         this.setState({
-            size: sizeValue
+            flagImage: flagValue
         });
     }
 
@@ -118,11 +115,9 @@ class App extends React.Component {
     render () {
         return (
             <div className="App">
-                <PokePrideCanvas pokemonImage={this.state.pokemonImage} flagImage={""} pokemonSize={this.state.size}/>
+                <PokePrideCanvas pokemonImage={this.state.pokemonImage} flagImage={this.state.flagImage} />
                 <PokemonSelector onSelectPokemon={this.handlePokemon} />
-                <FlagSelector />
-                <SizeSlider onSelectSize={this.handleSize} />
-                <RandomButton />
+                <FlagSelector onSelectFlag={this.handleFlag}/>
                 <Instructions />
                 <Copyright />
             </div>

@@ -13,7 +13,6 @@ canvas {
   width: 100%;
   max-width: 500px;
   max-height: 500px;
-  margin-bottom: 20px;
 }
 
 p {
@@ -25,14 +24,11 @@ p {
   padding-left: 20px;
 }
 
-#flagselector {
-  margin-top: 20px;
-}
-
 select {
   font-size: 12pt;
   width: 80vw;
   max-width: 250px;
+  margin-top: 20px;
 }
 
 input {
