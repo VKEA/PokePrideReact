@@ -11,11 +11,6 @@ class PokePrideCanvas extends React.Component {
         };
     }
 
-    componentDidMount() {
-        const canvas = this.refs.canvas;
-        const ctx = canvas.getContext("2d");
-    }
-
     loadImage(src, onload) {
         const img = new Image();
 
@@ -28,7 +23,9 @@ class PokePrideCanvas extends React.Component {
         const canvas = this.refs.canvas;
         const ctx = canvas.getContext("2d");
 
-        this.state.imagesLoaded += 1;
+        this.setState({
+            imagesLoaded: this.state.imagesLoaded + 1
+        });
 
         if(this.state.imagesLoaded === 2) {
             // composite now
